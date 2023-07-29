@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const tabHeaderItem = document.querySelectorAll('.tabheader__item'),
           tabsContent = document.querySelectorAll('.tabcontent'),
           tabHeader = document.querySelector('.tabheader');
-    
+
     function hideTabContent(){
         tabsContent.forEach(item =>{
             item.style.display = 'none';
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         tabHeaderItem[i].classList.add('tabheader__item_active');
     }
     hideTabContent();
-    showTabContent();  
+    showTabContent();
 
     tabHeader.addEventListener('click', (event)=>{
         const target = event.target;
@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             'hours': hours,
             'minutes': minutes,
             'seconds': seconds
-        };    
+        };
 
     }
     function setClock(selector, endtime){
@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             minutes = document.querySelector('#minutes'),
             seconds = document.querySelector('#seconds'),
             timeInterval = setInterval(updateClock, 1000);
-        updateClock();    
+        updateClock();
         function updateClock(){
             const t = getTimeRemaining(endtime);
             days.innerHTML = t.days;
@@ -66,8 +66,47 @@ window.addEventListener('DOMContentLoaded', ()=>{
             if(t.total<=0){
                 clearInterval(timeInterval);
             }
-        }    
+        }
 
     }
     setClock('.timer', timeEnd);
+    const modalTriger = document.querySelectorAll('[data-modal]'),
+        modal = document.querySelector('.modal'),
+        modalClose = document.querySelector('[data-close]');
+
+        modalTriger.forEach(btn => {
+            btn.addEventListener('click', ()=>{
+                modal.classList.add('show');
+                modal.classList.remove('hide');
+                document.body.style.overflow = 'hidden';
+            } );
+
+        });
+        modalClose.addEventListener('click', ()=>{
+            closeModal();
+            // modal.classList.add('hide');
+            // modal.classList.remove('show');
+            // document.body.style.overflow = '';
+        });
+        modal.addEventListener('click', (e)=>{
+            if(e.target === modal){
+                closeModal();
+                // modal.classList.add('hide');
+                // modal.classList.remove('show');
+                // document.body.style.overflow = '';
+            }
+        });
+        document.addEventListener('keydown', (e)=>{
+            if(e.code === 'Escape') {
+                closeModal();
+                // modal.classList.add('hide');
+                // modal.classList.remove('show');
+                // document.body.style.overflow = '';
+            }
+        })
+        function closeModal() {
+                modal.classList.add('hide');
+                modal.classList.remove('show');
+                document.body.style.overflow = '';
+        }
 });
