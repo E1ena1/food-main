@@ -70,6 +70,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     }
     setClock('.timer', timeEnd);
+    //modal
     const modalTriger = document.querySelectorAll('[data-modal]'),
         modal = document.querySelector('.modal'),
         modalClose = document.querySelector('[data-close]');
