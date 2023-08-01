@@ -85,24 +85,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
         });
         modalClose.addEventListener('click', ()=>{
             closeModal();
-            // modal.classList.add('hide');
-            // modal.classList.remove('show');
-            // document.body.style.overflow = '';
         });
         modal.addEventListener('click', (e)=>{
             if(e.target === modal){
                 closeModal();
-                // modal.classList.add('hide');
-                // modal.classList.remove('show');
-                // document.body.style.overflow = '';
             }
         });
         document.addEventListener('keydown', (e)=>{
             if(e.code === 'Escape') {
                 closeModal();
-                // modal.classList.add('hide');
-                // modal.classList.remove('show');
-                // document.body.style.overflow = '';
             }
         })
         function closeModal() {
@@ -135,8 +126,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
             if(n < 1){
                 slideIndex = slides.length;
             }
-            slides.forEach(item => item.style.display = "none");
-            slides[slideIndex - 1].style.display = 'block';
+            slides.forEach(item => item.classList.add('hide'));
+            slides[slideIndex - 1].classList.toggle('hide');
             if(slides.length < 10) {
                 current.textContent = `0${slideIndex}`;
             } else {
